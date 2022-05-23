@@ -1,0 +1,74 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXFileReference section */
+		87770DCA283BA8160077F918 /* SwiftGrammar.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SwiftGrammar.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		87770DC3283BA8080077F918 = {
+			isa = PBXGroup;
+			children = (
+				87770DCA283BA8160077F918 /* SwiftGrammar.playground */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		87770DC4283BA8080077F918 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1320;
+			};
+			buildConfigurationList = 87770DC7283BA8080077F918 /* Build configuration list for PBXProject "SwiftBasic" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 87770DC3283BA8080077F918;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		87770DC8283BA8080077F918 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		87770DC9283BA8080077F918 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		87770DC7283BA8080077F918 /* Build configuration list for PBXProject "SwiftBasic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87770DC8283BA8080077F918 /* Debug */,
+				87770DC9283BA8080077F918 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 87770DC4283BA8080077F918 /* Project object */;
+}
