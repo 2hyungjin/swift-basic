@@ -42,6 +42,10 @@ for element in array{
     print(element)
 }
 
+for element in array where element.count <= 3{
+    print(element)
+}
+
 switch n{
 case 0:
     print(0)
@@ -57,8 +61,6 @@ var range2 = 1..<10
 var canNil : Int? = nil
 //var cantNil : Int = nil //error
 
-var z:Int?
-print(z)
 
 var optionalInt:Int?=2
 print(optionalInt) //Optional(2)
@@ -73,3 +75,79 @@ if let justInt = optionalInt{
 
 var nilArray : [String]?=["one"]
 print(nilArray?.isEmpty)
+
+func a(name: String, age:Int)->String{
+    return "\(name) \(age)살"
+}
+print(a(name:"이형진",age: 19))
+
+func b(_ name:String, years age:Int)->String{
+    return "\(name) \(age)살"
+}
+print(b("이형진", years: 19))
+
+let closure = {(name:String) -> (String) in
+    return "hi \(name)"
+}
+(
+    {(name:String) -> () in
+        print( "hi \(name)")
+    }
+)("이형진")
+print(closure("lee"))
+
+func func1(closure : (String)->()){
+    closure("func1")
+}
+
+func1(closure: {(name:String)->() in
+    print(name)
+})
+func1{(name : String) ->() in
+    print("hello \(name)")
+}
+
+class A{
+    var prop1:Int?
+    var prop2:String?
+}
+
+protocol Proto{
+    var name:String{get set}
+    func method()->Void
+}
+
+struct B : Proto{
+    var name:String=""
+    var intoduce:String{return "my name is \(name)"}
+    func method() {
+        print("method")
+    }
+}
+
+protocol Proto2 : Proto{
+    var age:Int{get}
+}
+
+var b = B()
+b.name="Lee"
+print(b is Proto)
+print(b as? Proto)
+print(b.intoduce)
+
+struct  C{
+    var name:String
+}
+var c = C(name: "lee")
+
+struct Student{
+    var name:String = ""
+
+    mutating func change(name:String){
+        self.name=name
+    }
+}
+
+var zz = Z()
+zz.change(name: "Lee")
+print(zz.student)

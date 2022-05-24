@@ -83,6 +83,14 @@ default:
 조건, 반복, 스위치 문은 괄호가 없다는 점을 제외하면 다른 언어와 크게 다르지 않다.
 
 ```swift
+for element in array where element.count <= 3{
+    print(element)
+}
+```
+
+where를 사용해 조건에 해당하는 값만 루프를 실행할 수 있다.
+
+```swift
 var range = 1...10 //1부터 10까지
 var range2 = 1..<10 //1부터 9까지
 ```
@@ -132,3 +140,144 @@ print(nilArray?.isEmpty)
 ```
 
 코틀린처럼 ?.메서드로 nil체크를 할 수 있다.
+
+```swift
+func a(name: String, age:Int)->String{
+    return "\(name) \(age)살"
+}
+print(a(name:"이형진",age: 19))
+```
+
+함수는 func 키워드를 사용하여 선언하고, -> 뒤에 리턴 타입을 작성한다.
+
+호출할 때는 파라미터 이름을 적어야 한다.
+
+```swift
+func b(_ name:String, years age:Int = 1)->String{
+    return "\(name) \(age)살"
+}
+print(b("이형진", years: 19))
+```
+
+파라미터 앞에 호출 시 사용할 별명을 적을 수 있고, _를 적으면 호출 시 파라미터 이름을 적지 않아도 된다.
+
+함수의 기본 값을 선언할 수도 있다.
+
+```swift
+let closure = {(name:String) -> (String) in
+    return "hi \(name)"
+}
+print(closure("lee"))
+```
+
+클로저는 익명 함수의 개념이며 (코틀린의 람다처럼 쓰임) {(파라미터) -> 반환형 in 함수내용}으로 만든다.
+
+클로저를 호출할 때에는 파라미터 이름을 적지 않는다.
+
+```swift
+(
+    {(name:String) -> () in
+        print( "hi \(name)")
+    }
+)("이형진")
+```
+
+괄호로 묶어 일회성으로 호출할 수 있다.
+
+```swift
+func func1(closure : (String)->()){
+    closure("func1")
+}
+
+func1(closure: {(name:String)->() in
+    print(name)
+})
+```
+
+원래 클로저를 파라미터로 받는 함수를 호출할 때는 이렇게 해야하지만
+
+```swift
+func1{(name : String) ->() in
+    print("hello \(name)")
+}
+```
+
+코틀린의 람다를 받는 함수와 마찬가지로 마지막 파라미터가 클로저일 경우 괄호 밖에 함수를 호출할 수 있고
+
+파라미터가 클로저 하나일 경우, 괄호 또한 생략 가능하다.
+
+이를 트레일링 클로저라고 한다.(후행 클로저)
+
+```swift
+class A{
+    var prop1:Int?
+    var prop2:String?
+}
+struct B{
+    var prop1:Int?
+    var prop2:String?
+}
+```
+
+스위프트에는 Class와 Struct가 있으며 Class는 Reference 타입, Struct는 value 타입이다.
+
+```swift
+protocol Prot{
+    var name{get set}
+    var method()->Void
+}
+```
+
+프로토콜은 인터페이스의 개념이며 요구 사항을 작성한다.
+
+```swift
+struct B : Proto{
+    var name:String=""
+    func method() {
+        print("method")
+    }
+}
+```
+
+(class or struct) : protocol을 통해 프로토콜을 채택할 수 있으며
+
+프로토콜을 채택하면 프로토콜의 요구사항을 준수해야 한다.
+
+```swift
+protocol Proto2 : Proto{
+    var age:Int{get}
+}
+```
+
+프로토콜을 확장할 수도 있다.
+
+```swift
+var b = B()
+print(b is Proto)
+print(b as? Proto)
+```
+
+is를 통해 해당 프로토콜을 채택했는지를 알 수 있다.
+
+as?는 프로토콜을 채택했을 경우 값을, 채택하지 않았을 경우 nil을 반환한다.
+
+```swift
+var name:String=""
+var intoduce:String{return "my name is \(name)"}
+```
+
+프로퍼티의 종류에는 값을 저장하는 stored 프로퍼티,
+
+계산된 값을 반환하는 computed 프로퍼티가 있다.
+
+```swift
+struct Student{
+    var name:String = ""
+
+    mutating func change(name:String){
+        self.name=name
+    }
+}
+```
+
+struct에서 프로퍼티를 변경하는 함수 앞에는 mutating 키워드를 붙여야 한다.
