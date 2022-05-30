@@ -91,8 +91,8 @@ let closure = {(name:String) -> (String) in
 }
 (
     {(name:String) -> () in
-        print( "hi \(name)")
-    }
+    print( "hi \(name)")
+}
 )("이형진")
 print(closure("lee"))
 
@@ -142,12 +142,50 @@ var c = C(name: "lee")
 
 struct Student{
     var name:String = ""
-
+    
     mutating func change(name:String){
         self.name=name
     }
 }
 
-var zz = Z()
-zz.change(name: "Lee")
-print(zz.student)
+
+var y = 1
+func inoutFunc(a : inout Int){
+    a=3
+}
+func simpleFunc(){
+    print("하이")
+}
+inoutFunc(a: &y)
+print(y)
+
+func sample(fun : ()->Void){
+    print("함수")
+    fun()
+}
+sample(fun: simpleFunc)
+
+enum Food{
+    case chicken(isFried:Bool)
+    case pizza(String),rice
+}
+var lunch = Food.chicken(isFried: true)
+lunch = .pizza("콤비네이션")
+
+switch lunch{
+case let .pizza(name):
+    print("오늘 점심은 \(name)피자")
+case .chicken(isFried :true):
+    print("오늘 점심은 후라이드 치킨")
+case .chicken(isFried: false):
+    print("오늘 점심은 양념 치킨")
+case .rice:
+    print("오늘 점심은 밥")
+}
+struct Human{
+    var age:Int
+    var name:String
+}
+let me = Human(age: 19, name: "이형진")
+//me.age = 10 //error
+

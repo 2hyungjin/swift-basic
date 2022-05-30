@@ -164,6 +164,16 @@ print(b("이형진", years: 19))
 함수의 기본 값을 선언할 수도 있다.
 
 ```swift
+var y = 1
+func inoutFunc(a : inout Int){
+    a=3
+}
+inoutFunc(a: &y)
+```
+
+inout 함수를 사용하면 포인터를 사용하는 함수를 만들 수 있다.
+
+```swift
 let closure = {(name:String) -> (String) in
     return "hi \(name)"
 }
@@ -209,19 +219,6 @@ func1{(name : String) ->() in
 이를 트레일링 클로저라고 한다.(후행 클로저)
 
 ```swift
-class A{
-    var prop1:Int?
-    var prop2:String?
-}
-struct B{
-    var prop1:Int?
-    var prop2:String?
-}
-```
-
-스위프트에는 Class와 Struct가 있으며 Class는 Reference 타입, Struct는 value 타입이다.
-
-```swift
 protocol Prot{
     var name{get set}
     var method()->Void
@@ -231,7 +228,7 @@ protocol Prot{
 프로토콜은 인터페이스의 개념이며 요구 사항을 작성한다.
 
 ```swift
-struct B : Proto{
+struct B : Prot{
     var name:String=""
     func method() {
         print("method")
@@ -239,7 +236,7 @@ struct B : Proto{
 }
 ```
 
-(class or struct) : protocol을 통해 프로토콜을 채택할 수 있으며
+ : protocol을 통해 프로토콜을 채택할 수 있으며
 
 프로토콜을 채택하면 프로토콜의 요구사항을 준수해야 한다.
 
@@ -271,13 +268,61 @@ var intoduce:String{return "my name is \(name)"}
 계산된 값을 반환하는 computed 프로퍼티가 있다.
 
 ```swift
-struct Student{
-    var name:String = ""
-
-    mutating func change(name:String){
-        self.name=name
-    }
+enum Food{
+    case chicken(isFried:Bool)
+    case pizza(String),rice
 }
+var lunch = Food.chicken(isFried: true)
+lunch = .pizza("콤비네이션")
 ```
 
 struct에서 프로퍼티를 변경하는 함수 앞에는 mutating 키워드를 붙여야 한다.
+
+enum은 관련된 값을 공동의 자료형으로 구분해 형 안정성을 보장한다.
+
+case를 사용하거나 컴마를 통해 enum에 case를 정의할 수 있고 chicken의 예시처럼 관련 값을 정의할 수 있다.
+
+enum으로 선언된 값을 변경할 경우 .case로 변경 가능하다.(점 문법)
+
+```swift
+switch lunch{
+case let .pizza(name):
+    print("오늘 점심은 \(name)피자")
+case .chicken(isFried :true):
+    print("오늘 점심은 후라이드 치킨")
+case .chicken(isFried: false):
+    print("오늘 점심은 양념 치킨")
+case .rice:
+    print("오늘 점심은 밥")
+}
+```
+
+enum을 switch로 사용하려면 모든 case를 나열하거나 default 구문을 사용해야 한다.
+
+```swift
+class A{
+    var prop1:Int?
+    var prop2:String?
+}
+struct B{
+    var prop1:Int?
+    var prop2:String?
+}
+```
+
+스위프트에는 Class와 Struct가 있으며 Class는 Reference 타입, Struct는 value 타입이다.
+
+Class와 Struct는 메서드, 프로퍼티를 정의 한다는 점에서 공통점이 있으나 상속이나 소멸자 같은 일부 기능은 Class만 사용 가능하다.
+
+```swift
+struct Human{
+    var age:Int
+    var name:String
+}
+let me = Human(age: 19, name: "이형진")
+me.age = 10 //error
+```
+
+구조체는 초기화 메서드를 자동으로 제공한다.
+
+구조체를 let으로 선언할 경우 구조체의 프로퍼티를 변경할 수 없다.
