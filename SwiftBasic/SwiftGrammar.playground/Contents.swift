@@ -185,7 +185,9 @@ case .rice:
 struct Human{
     var age:Int
     var name:String
+    var gender:String
 }
-let me = Human(age: 19, name: "이형진")
+let me = Human(age: 19, name: "이형진", gender: "male")
+print(me)
 //me.age = 10 //error
 
